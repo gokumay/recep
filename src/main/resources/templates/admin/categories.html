@@ -10,13 +10,13 @@
 
 <!-- Content of the Specific Tab -->
 <div class="tab-content" th:fragment="content">
-  <!-- Content of the Visitors Tab -->
+  <!-- Content of the Categories Tab -->
   <h2>Categories List</h2>
 
-  <!-- Add Visitor Button -->
+  <!-- Add New Category Button -->
   <a th:href="@{'/admin/categories/add'}">Add New Category</a>
 
-  <!-- Visitor Table -->
+  <!-- Categories Table -->
   <table>
     <thead>
     <tr>
@@ -27,17 +27,17 @@
     </tr>
     </thead>
     <tbody>
-    <!-- Loop through visitors from the model -->
+    <!-- Loop through categories from the model -->
     <tr th:each="category : ${categories}">
       <!--/*@thymesVar id="id" type=""*/-->
       <td th:text="${category.id}"></td>
       <td th:text="${category.name}"></td>
       <td th:text="${category.status}"></td>
       <td>
-        <!-- Edit Visitor Button -->
-        <a th:href="@{'/admin/visitors/edit/' + ${category.id}}">Edit</a>
-        <!-- Delete Visitor Button -->
-        <a th:href="@{'/admin/visitors/delete/' + ${category.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+        <!-- Edit Category Button -->
+        <a th:href="@{'/admin/categories/edit/' + ${category.id}}">Edit</a>
+        <!-- Delete Category Button -->
+        <a th:href="@{'/admin/categories/delete/' + ${category.id}}" onclick="return confirm('Are you sure?')">Delete</a>
       </td>
     </tr>
     </tbody>
