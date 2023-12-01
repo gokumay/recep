@@ -13,10 +13,10 @@
   <!-- Content of the Visitors Tab -->
   <h2>Shifts List</h2>
 
-  <!-- Add Visitor Button -->
+  <!-- Add New Shift Button -->
   <a th:href="@{'/admin/shifts/add'}">Add New Shift</a>
 
-  <!-- Visitor Table -->
+  <!-- Shift Table -->
   <table>
     <thead>
     <tr>
@@ -27,16 +27,16 @@
     </tr>
     </thead>
     <tbody>
-    <!-- Loop through visitors from the model -->
+    <!-- Loop through shifts from the model -->
     <tr th:each="shift : ${shifts}">
       <!--/*@thymesVar id="id" type=""*/-->
       <td th:text="${shift.id}"></td>
       <td th:text="${shift.name}"></td>
       <td th:text="${shift.status}"></td>
       <td>
-        <!-- Edit Visitor Button -->
+        <!-- Edit Shift Button -->
         <a th:href="@{'/admin/visitors/edit/' + ${shift.id}}">Edit</a>
-        <!-- Delete Visitor Button -->
+        <!-- Delete Shift Button -->
         <a th:href="@{'/admin/visitors/delete/' + ${shift.id}}" onclick="return confirm('Are you sure?')">Delete</a>
       </td>
     </tr>
