@@ -8,15 +8,15 @@
 </head>
 <body>
 
-<!-- Content of the Specific Tab -->
+<!-- Content of the Employees Tab -->
 <div class="tab-content" th:fragment="content">
-  <!-- Content of the Visitors Tab -->
+  <!-- Content of the Employees Tab -->
   <h2>Employees List</h2>
 
-  <!-- Add Visitor Button -->
+  <!-- Add New Employee Button -->
   <a th:href="@{'/admin/employees/add'}">Add New Employee</a>
 
-  <!-- Visitor Table -->
+  <!-- Employees Table -->
   <table>
     <thead>
     <tr>
@@ -29,7 +29,7 @@
     </tr>
     </thead>
     <tbody>
-    <!-- Loop through visitors from the model -->
+    <!-- Loop through employee from the model -->
     <tr th:each="employee : ${employees}">
       <!--/*@thymesVar id="id" type=""*/-->
       <td th:text="${employee.id}"></td>
@@ -38,10 +38,10 @@
       <td th:text="${employee.phone}"></td>
       <td th:text="${employee.position}"></td>
       <td>
-        <!-- Edit Visitor Button -->
+        <!-- Edit Employee Button -->
         <a th:href="@{'/admin/employees/edit/' + ${employee.id}}">Edit</a>
-        <!-- Delete Visitor Button -->
-        <a th:href="@{'/admin/visitors/delete/' + ${employee.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+        <!-- Delete Employee Button -->
+        <a th:href="@{'/admin/employees/delete/' + ${employee.id}}" onclick="return confirm('Are you sure?')">Delete</a>
       </td>
     </tr>
     </tbody>
