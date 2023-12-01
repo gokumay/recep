@@ -7,46 +7,44 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<!-- Content of the Employees Tab -->
-<div class="tab-content" th:fragment="content">
   <!-- Content of the Employees Tab -->
-  <h2>Employees List</h2>
-
-  <!-- Add New Employee Button -->
-  <a th:href="@{'/admin/employees/add'}">Add New Employee</a>
-
-  <!-- Employees Table -->
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Position</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Loop through employee from the model -->
-    <tr th:each="employee : ${employees}">
-      <!--/*@thymesVar id="id" type=""*/-->
-      <td th:text="${employee.id}"></td>
-      <td th:text="${employee.name}"></td>
-      <td th:text="${employee.email}"></td>
-      <td th:text="${employee.phone}"></td>
-      <td th:text="${employee.position}"></td>
-      <td>
-        <!-- Edit Employee Button -->
-        <a th:href="@{'/admin/employees/edit/' + ${employee.id}}">Edit</a>
-        <!-- Delete Employee Button -->
-        <a th:href="@{'/admin/employees/delete/' + ${employee.id}}" onclick="return confirm('Are you sure?')">Delete</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
+  <div class="tab-content" th:fragment="content">
+    <!-- Content of the Employees Tab -->
+    <h2>Employees List</h2>
+  
+    <!-- Add New Employee Button -->
+    <a th:href="@{'/admin/employees/add'}">Add New Employee</a>
+  
+    <!-- Employees Table -->
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Position</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Loop through employee from the model -->
+      <tr th:each="employee : ${employees}">
+        <!--/*@thymesVar id="id" type=""*/-->
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.phone}"></td>
+        <td th:text="${employee.position}"></td>
+        <td>
+          <!-- Edit Employee Button -->
+          <a th:href="@{'/admin/employees/edit/' + ${employee.id}}">Edit</a>
+          <!-- Delete Employee Button -->
+          <a th:href="@{'/admin/employees/delete/' + ${employee.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
