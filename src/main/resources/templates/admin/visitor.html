@@ -31,10 +31,7 @@
     </thead>
     <tbody>
     <!-- Loop through visitors from the model -->
-    <!--/*@thymesVar id="visitors" type=""*/-->
     <tr th:each="visitor : ${visitors}">
-      <!--/*@thymesVar id="id" type=""*/-->
-      <!--/*@thymesVar id="id" type="lombok"*/-->
       <td th:text="${visitor.id}"></td>
       <td th:text="${visitor.name}"></td>
       <td th:text="${visitor.email}"></td>
