@@ -1,0 +1,38 @@
+/* Add your styles here */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.side-menu {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    padding-top: 20px;
+}
+
+.side-menu button {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: left;
+    text-decoration: none;
+    color: white;
+    background-color: #111;
+    border: none;
+    border-bottom: 1px solid #777;
+    cursor: pointer;
+}
+
+.content-area {
+    margin-left: 200px;
+    padding: 16px;
+}
+
+.tab-content {
+    display: block;
+}

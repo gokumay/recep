@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${tabTitle}">Employee Shift List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Content of the Specific Tab -->
+<div class="tab-content" th:fragment="content">
+    <!-- Content of the Visitors Tab -->
+    <h2>Employee Shift List</h2>
+
+    <!-- Add Visitor Button -->
+    <a th:href="@{'/admin/employeeShifts/add'}">Add New Shift</a>
+
+    <!-- Visitor Table -->
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Shift Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Loop through visitors from the model -->
+        <tr th:each="employeeShift : ${employeeShifts}">
+            <!--/*@thymesVar id="id" type=""*/-->
+            <td th:text="${employeeShift.id}"></td>
+            <td th:text="${employeeShift.name}"></td>
+            <td th:text="${employeeShift.status}"></td>
+            <td>
+                <!-- Edit Visitor Button -->
+                <a th:href="@{'/admin/visitors/edit/' + ${employeeShift.id}}">Edit</a>
+                <!-- Delete Visitor Button -->
+                <a th:href="@{'/admin/visitors/delete/' + ${employeeShift.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

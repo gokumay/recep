@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${tabTitle}">Appointments List</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+<div class="tab-content" th:fragment="content">
+
+  <h2>Appointments List</h2>
+
+
+  <a th:href="@{'/admin/appointments/add'}">Add New Appointment</a>
+
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Visitor Name</th>
+      <th>Category Name</th>
+      <th>Employee Name</th>
+      <th>Appointment Start Time</th>
+      <th>Appointment Status</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="appointment : ${appointments}">
+
+      <td th:text="${appointment.id}"></td>
+      <td th:text="${visitor.name}"></td>
+      <td th:text="${category.name}"></td>
+      <td th:text="${employee.name}"></td>
+      <td th:text="${appointment.appointment_time}"></td>
+      <td th:text="${appointment.status}"></td>
+      <td>
+
+        <a th:href="@{'/admin/appointments/edit/' + ${appointment.id}}">Edit</a>
+
+        <a th:href="@{'/admin/appointments/delete/' + ${appointment.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

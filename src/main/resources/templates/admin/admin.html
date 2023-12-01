@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Side Menu -->
+<div class="side-menu">
+    <button onclick="showTab('visitors')">Visitors</button>
+    <button onclick="showTab('categories')">Categories</button>
+    <button onclick="showTab('shifts')">Shifts</button>
+    <button onclick="showTab('employees')">Employees</button>
+    <button onclick="showTab('schedules')">Schedules</button>
+    <button onclick="showTab('employeeShifts')">Employee Shifts</button>
+    <button onclick="showTab('appointments')">Appointments</button>
+    <button onclick="resetDashboard()">Home</button>
+</div>
+
+<!-- Content Area -->
+<div class="content-area">
+    <h1>Welcome to Admin Dashboard</h1>
+    <!-- Dynamic Content -->
+    <div th:include="${currentTab} :: content"></div>
+</div>
+
+<!-- JavaScript for Tab Navigation -->
+<script>
+    function showTab(tabName) {
+        document.getElementById('currentTab').innerHTML = 'admin/' + tabName;
+    }
+
+    function resetDashboard() {
+        document.getElementById('currentTab').innerHTML = 'admin/home';
+    }
+</script>
+
+</body>
+</html>

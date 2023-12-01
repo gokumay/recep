@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${tabTitle}">Employees List</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Content of the Specific Tab -->
+<div class="tab-content" th:fragment="content">
+  <!-- Content of the Visitors Tab -->
+  <h2>Employees List</h2>
+
+  <!-- Add Visitor Button -->
+  <a th:href="@{'/admin/employees/add'}">Add New Employee</a>
+
+  <!-- Visitor Table -->
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Position</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through visitors from the model -->
+    <tr th:each="employee : ${employees}">
+      <!--/*@thymesVar id="id" type=""*/-->
+      <td th:text="${employee.id}"></td>
+      <td th:text="${employee.name}"></td>
+      <td th:text="${employee.email}"></td>
+      <td th:text="${employee.phone}"></td>
+      <td th:text="${employee.position}"></td>
+      <td>
+        <!-- Edit Visitor Button -->
+        <a th:href="@{'/admin/employees/edit/' + ${employee.id}}">Edit</a>
+        <!-- Delete Visitor Button -->
+        <a th:href="@{'/admin/visitors/delete/' + ${employee.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
