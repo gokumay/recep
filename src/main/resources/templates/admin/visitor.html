@@ -7,47 +7,45 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<!-- Content of the Specific Tab -->
-<div class="tab-content" th:fragment="content">
-  <!-- Content of the Visitors Tab -->
-  <h2>Visitor List</h2>
-
-  <!-- Add Visitor Button -->
-  <a th:href="@{'/admin/visitors/add'}">Add Visitor</a>
-
-  <!-- Visitor Table -->
-  <table border="1">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Category ID</th>
-      <th>Status</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Loop through visitors from the model -->
-    <tr th:each="visitor : ${visitors}">
-      <td th:text="${visitor.id}"></td>
-      <td th:text="${visitor.name}"></td>
-      <td th:text="${visitor.email}"></td>
-      <td th:text="${visitor.phone}"></td>
-      <td th:text="${visitor.company}"></td>
-      <td th:text="${visitor.purpose}"></td>
-      <td>
-        <!-- Edit Visitor Button -->
-        <a th:href="@{'/admin/visitors/edit/' + ${visitor.id}}">Edit</a>
-        <!-- Delete Visitor Button -->
-        <a th:href="@{'/admin/visitors/delete/' + ${visitor.id}}" onclick="return confirm('Are you sure?')">Delete</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
+  <!-- Content of the Specific Tab -->
+  <div class="tab-content" th:fragment="content">
+    <!-- Content of the Visitors Tab -->
+    <h2>Visitor List</h2>
+  
+    <!-- Add Visitor Button -->
+    <a th:href="@{'/admin/visitors/add'}">Add Visitor</a>
+  
+    <!-- Visitor Table -->
+    <table border="1">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Category ID</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Loop through visitors from the model -->
+      <tr th:each="visitor : ${visitors}">
+        <td th:text="${visitor.id}"></td>
+        <td th:text="${visitor.name}"></td>
+        <td th:text="${visitor.email}"></td>
+        <td th:text="${visitor.phone}"></td>
+        <td th:text="${visitor.company}"></td>
+        <td th:text="${visitor.purpose}"></td>
+        <td>
+          <!-- Edit Visitor Button -->
+          <a th:href="@{'/admin/visitors/edit/' + ${visitor.id}}">Edit</a>
+          <!-- Delete Visitor Button -->
+          <a th:href="@{'/admin/visitors/delete/' + ${visitor.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
