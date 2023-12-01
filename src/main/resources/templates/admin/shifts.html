@@ -7,42 +7,40 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<!-- Content of the Specific Tab -->
-<div class="tab-content" th:fragment="content">
-  <!-- Content of the Visitors Tab -->
-  <h2>Shifts List</h2>
-
-  <!-- Add New Shift Button -->
-  <a th:href="@{'/admin/shifts/add'}">Add New Shift</a>
-
-  <!-- Shift Table -->
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Loop through shifts from the model -->
-    <tr th:each="shift : ${shifts}">
-      <!--/*@thymesVar id="id" type=""*/-->
-      <td th:text="${shift.id}"></td>
-      <td th:text="${shift.name}"></td>
-      <td th:text="${shift.status}"></td>
-      <td>
-        <!-- Edit Shift Button -->
-        <a th:href="@{'/admin/visitors/edit/' + ${shift.id}}">Edit</a>
-        <!-- Delete Shift Button -->
-        <a th:href="@{'/admin/visitors/delete/' + ${shift.id}}" onclick="return confirm('Are you sure?')">Delete</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
+  <!-- Content of the Specific Tab -->
+  <div class="tab-content" th:fragment="content">
+    <!-- Content of the Visitors Tab -->
+    <h2>Shifts List</h2>
+  
+    <!-- Add New Shift Button -->
+    <a th:href="@{'/admin/shifts/add'}">Add New Shift</a>
+  
+    <!-- Shift Table -->
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Loop through shifts from the model -->
+      <tr th:each="shift : ${shifts}">
+        <!--/*@thymesVar id="id" type=""*/-->
+        <td th:text="${shift.id}"></td>
+        <td th:text="${shift.name}"></td>
+        <td th:text="${shift.status}"></td>
+        <td>
+          <!-- Edit Shift Button -->
+          <a th:href="@{'/admin/visitors/edit/' + ${shift.id}}">Edit</a>
+          <!-- Delete Shift Button -->
+          <a th:href="@{'/admin/visitors/delete/' + ${shift.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
