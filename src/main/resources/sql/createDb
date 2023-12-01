@@ -1,0 +1,156 @@
+use recep;
+DROP DATABASE IF EXISTS recep;
+DROP TABLE Categories;
+-- Bảng Categories
+CREATE TABLE Categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+-- Bảng Visitors
+CREATE TABLE Visitors (
+    visitor_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    company VARCHAR(255),
+    purpose TEXT,
+    category_id INT,
+    check_in_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+);
+
+-- Bảng Employees
+CREATE TABLE Employees (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    phone VARCHAR(20),
+    position VARCHAR(255) NOT NULL
+);
+
+-- Bảng Shifts
+CREATE TABLE Shifts (
+    shift_id INT AUTO_INCREMENT PRIMARY KEY,
+    shift_name VARCHAR(255) NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL
+);
+
+-- Bảng Schedules (chỉ để theo dõi thời gian làm việc cụ thể của nhân viên)
+CREATE TABLE Schedules (
+    schedule_id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT,
+    day_of_week VARCHAR(20) NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id)
+);
+
+CREATE TABLE Schedules (
+    schedule_id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT,
+    shift_id INT,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    day_of_week VARCHAR(20) NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id),
+    FOREIGN KEY (shift_id) REFERENCES Shifts(shift_id)
+);
+
+-- Bảng EmployeeShifts
+CREATE TABLE EmployeeShifts (
+    employee_id INT,
+    shift_id INT,
+    day_of_week VARCHAR(20) NOT NULL,
+    PRIMARY KEY (employee_id, shift_id, day_of_week),
+    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id),
+    FOREIGN KEY (shift_id) REFERENCES Shifts(shift_id)
+);
+
+-- Bảng Appointments
+CREATE TABLE Appointments (
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
+    visitor_id INT,
+    employee_id INT,
+    appointment_time TIMESTAMP,
+    status VARCHAR(50) DEFAULT 'Chưa gặp',
+    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id),
+    FOREIGN KEY (visitor_id) REFERENCES Visitors(visitor_id)
+);
+
+
+-- thay đổi kiểu dữ liệu của cột trong bảng
+ALTER TABLE Visitors
+DROP FOREIGN KEY visitors_ibfk_1;
+
+ALTER TABLE Categories
+MODIFY COLUMN category_id INT AUTO_INCREMENT;
+
+ALTER TABLE Visitors
+ADD CONSTRAINT visitors_ibfk_1
+FOREIGN KEY (category_id) REFERENCES Categories(category_id);
+
+-- Insert thông tin vào các bảng
+INSERT INTO Categories (name)
+VALUES
+    ('Partner'),
+    ('Customer'),
+    ('Applicant'),
+    ('Visitor'),
+    ('Supplier'),
+    ('Delivery'),
+    ('Maintenance and operation');
+SELECT * FROM categories;
+DELETE FROM Visitors;
+
+INSERT INTO Visitors (name,email,phone,company,purpose,category_id)
+VALUES
+    ('Hai Hoa', 'supplier@gmail.com', '0988886666', 'supplier1', 'delivery', 5),
+    ('Hoangnt', 'shipper@gmail.com', '0244446666', 'shipper1', 'delivery', 6),
+    ('Nganhh', 'interview@gmail.com', '0522228888', 'interviewer1', 'interview', 3),
+    ('Khanhhd', 'mt@gmail.com', '0922223333', 'mt1', 'computer maintenance', 7),
+    ('Vuongpn', 'customer1@gmail.com', '0622228888', 'customer1', 'contact', 2),
+    ('Thangms', 'customer2@gmail.com', '0933335555', 'customer2', 'contact', 2)
+    ;
+SELECT * FROM Visitors;
+
+INSERT INTO Employees (name,email,phone,position)
+VALUES
+    ('Tiendt', 'tien@gmail.com', '0911112222', 'CTO'),
+    ('Thinhbv', 'thinh@gmail.com', '0822223333', 'CEO'),
+    ('Dungts', 'dung@gmail.com', '0744445555', 'COO'),
+    ('Manh', 'manh@gmail.com', '0955556666', 'Human resources department'),
+    ('Hanhnt', 'hanh@gmail.com', '0866667777', 'Receptionists'),
+    ('Quyht', 'quy@gmail.com', '0788889999', 'Sales agent'),
+    ('Ngadn', 'nga@gmail.com', '0988887777', 'Employee'),
+    ('Vinhhd', 'vinh@gmail.com', '0799998888', 'Employee'),
+    ('Vietnq', 'viet@gmail.com', '0244448888', 'Employee'),
+    ('Khangnt', 'khang@gmail.com', '0266665555', 'Employee'),
+    ('Thuydtt', 'thuy@gmail.com', '0766668888', 'Employee')
+    ;
+
+INSERT INTO Shifts (shift_name, start_time, end_time) VALUES
+('Default Shift', '08:00:00', '17:00:00'),
+('Night Shift', '22:00:00', '06:00:00'),
+('Break Shift', '17:30:00', '24:00:00');
+SELECT * FROM Appointments;
+
+INSERT INTO Schedules (employee_id, shift_id, start_time, end_time, day_of_week) VALUES
+(1, 1, '08:00:00', '17:00:00', 'Monday'),
+(1, 1, '08:00:00', '17:00:00', 'Wednesday'),
+(2, 2, '22:00:00', '06:00:00', 'Tuesday');
+
+-- Tất cả nhân viên đều làm ca 1 vào ngày trong tuần được chỉ định
+INSERT INTO EmployeeShifts (employee_id, shift_id, day_of_week)
+SELECT employee_id, 1, 'Friday'
+FROM Employees;
+
+INSERT INTO Appointments (employee_id, visitor_id, appointment_time) VALUES
+(1, 1, '2023-11-04 10:00:00'),
+(2, 2, '2023-11-05 14:30:00'),
+(3, 3, '2023-11-06 11:45:00');
+
+UPDATE Appointments
+SET status = 'đã gặp'
+WHERE employee_id = 1 AND visitor_id = 1;
