@@ -1,2 +1,31 @@
+#server.port=8181
+#server.error.path=/path
 server:
   port: 8181
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_db
+    username: root
+    password: 123456aA@
+    hikari:
+      maximum-pool-size: 15
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+      properties:
+        hibernate.format-sql: true
+        hibernate.jdbc.batch_size: 2000
+        hibernate.dialect: org.hibernate.dialect.MySQL57Dialect
+        hibernate.current_session_context: org.springframework.orm.hibernate5.SpringSessionContext
+      show-sql: true
+
+error:
+  message: ${ENV_MESSAGE:Error content}
+  login: Username or password is invalid
+  register: Username does not exist
+  auth: true
+  status: SUCCESS,FAILED,TIMEOUT
