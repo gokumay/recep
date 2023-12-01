@@ -7,42 +7,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<!-- Content of the Specific Tab -->
-<div class="tab-content" th:fragment="content">
-    <!-- Content of the Employee Shift Tab -->
-    <h2>Employee Shift List</h2>
-
-    <!-- Add Employee Shift Button -->
-    <a th:href="@{'/admin/employeeShifts/add'}">Add New Shift</a>
-
-    <!-- Employee Shifts Table -->
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Shift Name</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Loop through employee shifts from the model -->
-        <tr th:each="employeeShift : ${employeeShifts}">
-            <!--/*@thymesVar id="id" type=""*/-->
-            <td th:text="${employeeShift.id}"></td>
-            <td th:text="${employeeShift.name}"></td>
-            <td th:text="${employeeShift.status}"></td>
-            <td>
-                <!-- Edit Employee Shift Button -->
-                <a th:href="@{'/admin/employeeShift/edit/' + ${employeeShift.id}}">Edit</a>
-                <!-- Delete Employee Shift Button -->
-                <a th:href="@{'/admin/employeeShift/delete/' + ${employeeShift.id}}" onclick="return confirm('Are you sure?')">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
+    <!-- Content of the Specific Tab -->
+    <div class="tab-content" th:fragment="content">
+        <!-- Content of the Employee Shift Tab -->
+        <h2>Employee Shift List</h2>
+    
+        <!-- Add Employee Shift Button -->
+        <a th:href="@{'/admin/employeeShifts/add'}">Add New Shift</a>
+    
+        <!-- Employee Shifts Table -->
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Shift Name</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through employee shifts from the model -->
+            <tr th:each="employeeShift : ${employeeShifts}">
+                <!--/*@thymesVar id="id" type=""*/-->
+                <td th:text="${employeeShift.id}"></td>
+                <td th:text="${employeeShift.name}"></td>
+                <td th:text="${employeeShift.status}"></td>
+                <td>
+                    <!-- Edit Employee Shift Button -->
+                    <a th:href="@{'/admin/employeeShift/edit/' + ${employeeShift.id}}">Edit</a>
+                    <!-- Delete Employee Shift Button -->
+                    <a th:href="@{'/admin/employeeShift/delete/' + ${employeeShift.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
