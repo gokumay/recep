@@ -1,4 +1,4 @@
-package com.ra;
+package com.ra.recep;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.ra")
-@EnableJpaRepositories("com.ra.repository")
+@ComponentScan(basePackages = "com.ra.recep")
+@EnableJpaRepositories("com.ra.recep.persistence.repository")
 public class RecepApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RecepApplication.class, args);

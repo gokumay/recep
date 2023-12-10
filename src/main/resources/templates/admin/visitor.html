@@ -13,7 +13,7 @@
     <h2>Visitor List</h2>
   
     <!-- Add Visitor Button -->
-    <a th:href="@{'/admin/visitors/add'}">Add Visitor</a>
+    <a th:href="@{'/admin/visitorEntities/add'}">Add Visitor</a>
   
     <!-- Visitor Table -->
     <table border="1">
@@ -29,19 +29,19 @@
       </tr>
       </thead>
       <tbody>
-      <!-- Loop through visitors from the model -->
-      <tr th:each="visitor : ${visitors}">
-        <td th:text="${visitor.id}"></td>
-        <td th:text="${visitor.name}"></td>
-        <td th:text="${visitor.email}"></td>
-        <td th:text="${visitor.phone}"></td>
-        <td th:text="${visitor.company}"></td>
-        <td th:text="${visitor.purpose}"></td>
+      <!-- Loop through visitorEntities from the model -->
+      <tr th:each="visitorEntity : ${visitorEntities}">
+        <td th:text="${visitorEntity.id}"></td>
+        <td th:text="${visitorEntity.name}"></td>
+        <td th:text="${visitorEntity.email}"></td>
+        <td th:text="${visitorEntity.phone}"></td>
+        <td th:text="${visitorEntity.company}"></td>
+        <td th:text="${visitorEntity.purpose}"></td>
         <td>
           <!-- Edit Visitor Button -->
-          <a th:href="@{'/admin/visitors/edit/' + ${visitor.id}}">Edit</a>
+          <a th:href="@{'/admin/visitorEntities/edit/' + ${visitorEntity.id}}">Edit</a>
           <!-- Delete Visitor Button -->
-          <a th:href="@{'/admin/visitors/delete/' + ${visitor.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+          <a th:href="@{'/admin/visitorEntities/delete/' + ${visitorEntity.id}}" onclick="return confirm('Are you sure?')">Delete</a>
         </td>
       </tr>
       </tbody>

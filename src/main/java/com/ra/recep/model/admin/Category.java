@@ -1,4 +1,4 @@
-package com.ra.model.admin;
+package com.ra.recep.model.admin;
 
 import lombok.Data;
 

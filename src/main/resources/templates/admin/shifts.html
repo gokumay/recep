@@ -34,9 +34,9 @@
         <td th:text="${shift.status}"></td>
         <td>
           <!-- Edit Shift Button -->
-          <a th:href="@{'/admin/visitors/edit/' + ${shift.id}}">Edit</a>
+          <a th:href="@{'/admin/visitorEntities/edit/' + ${shift.id}}">Edit</a>
           <!-- Delete Shift Button -->
-          <a th:href="@{'/admin/visitors/delete/' + ${shift.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+          <a th:href="@{'/admin/visitorEntities/delete/' + ${shift.id}}" onclick="return confirm('Are you sure?')">Delete</a>
         </td>
       </tr>
       </tbody>
